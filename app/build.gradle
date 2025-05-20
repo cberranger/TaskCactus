@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 33 // Updated
+    // buildToolsVersion "26.0.1" // Removed, AGP will use a suitable version
     defaultConfig {
         applicationId "com.uottawa.thirstycactus.taskcactus"
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion 15 // Keeping this as is for now, can be a separate discussion
+        targetSdkVersion 33 // Updated
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // Updated to AndroidX
     }
     buildTypes {
         release {
@@ -20,12 +20,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.5.1', {
+        exclude group: 'androidx.annotation', module: 'annotation' // Updated exclude
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:26.+'
-    testCompile 'junit:junit:4.12'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.9.0' // Design library replacement
+    testImplementation 'junit:junit:4.13.2' // Updated JUnit
 }
